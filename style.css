@@ -1,0 +1,1776 @@
+/* ==========================================================================
+   PART 1: DESIGN SYSTEM STRUCTURAL RESET, VARIABLE ROOT & BASE ARCHITECTURE
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* Color Palette Architecture */
+    --v4-romantic-rose: #ffafcc;
+    --v4-premium-blue: #bde0fe;
+    --v4-accent-sky: #a2d2ff;
+    --v4-luxury-white: #ffffff;
+    --v4-text-primary: #1d1d1f;
+    --v4-text-muted: #6e6e73;
+    
+    /* Alpha Layer Foundations */
+    --v4-glass-bg: rgba(255, 255, 255, 0.45);
+    --v4-glass-border: rgba(255, 255, 255, 0.6);
+    
+    /* Motion Orchestration Engines */
+    --v4-transition-fast: 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+    --v4-transition-medium: 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    --v4-ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #eef7ff;
+    color: var(--v4-text-primary);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.global-particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.luxury-aurora-borealis {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200vw;
+    height: 200vh;
+    background: radial-gradient(circle at 30% 20%, rgba(255, 175, 204, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 70% 60%, rgba(189, 224, 254, 0.2) 0%, transparent 50%);
+    filter: blur(80px);
+    z-index: 2;
+    pointer-events: none;
+}
+
+main {
+    position: relative;
+    z-index: 5;
+}
+
+/* Glassmorphism Structural Base Utility */
+.glass-panel {
+    background: var(--v4-glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--v4-glass-border);
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(31, 38, 135, 0.04);
+}
+
+/* ==========================================================================
+   PART 2: CINEMATIC PRELOADER STAGE
+   ========================================================================== */
+.preloader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #eef7ff;
+    z-index: 3000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.6s var(--v4-ease-premium), visibility 0.6s var(--v4-ease-premium);
+}
+
+.preloader-overlay.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.preloader-chamber {
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+}
+
+.preloader-crest-wrapper {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preloader-heart-glyph {
+    font-size: 2.5rem;
+    color: var(--v4-romantic-rose);
+    animation: pulseHeartV41 1.2s infinite ease-in-out;
+}
+
+.preloader-circular-track {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.preloader-circular-track path {
+    fill: none;
+    stroke-width: 1.5;
+}
+
+.preloader-circular-track .track-bg {
+    stroke: rgba(29, 29, 31, 0.04);
+}
+
+.preloader-circular-track .track-fill {
+    stroke: var(--v4-premium-blue);
+    stroke-linecap: round;
+    transition: stroke-dasharray 0.1s linear;
+}
+
+.preloader-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+}
+
+.preloader-progress-bar {
+    width: 100%;
+    height: 2px;
+    background: rgba(29, 29, 31, 0.06);
+    border-radius: 1px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.preloader-progress-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--v4-premium-blue), var(--v4-romantic-rose));
+    transition: width 0.1s linear;
+}
+
+.preloader-status-text {
+    font-size: 0.72rem;
+    color: var(--v4-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* ==========================================================================
+   PART 3: HAUTE-COUTURE NAVIGATION BAR HEADER
+   ========================================================================== */
+.luxury-navbar {
+    position: fixed;
+    top: 24px;
+    left: 0;
+    right: 0;
+    width: calc(100% - 80px);
+    max-width: 1400px;
+    height: 72px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--v4-glass-border);
+    border-radius: 20px;
+    padding: 0 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 15px 35px rgba(31, 38, 135, 0.03);
+}
+
+.nav-branding-crest {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.crest-glyph {
+    font-size: 1.5rem;
+    color: var(--v4-romantic-rose);
+}
+
+.crest-text-logotype {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: -0.2px;
+}
+
+.nav-directory-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-directory-links a {
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--v4-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: color var(--v4-transition-fast);
+}
+
+.nav-directory-links a:hover {
+    color: var(--v4-text-primary);
+}
+
+.nav-audio-deck-toggle {
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: var(--v4-luxury-white);
+    border: 1px solid rgba(29, 29, 31, 0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    transition: transform var(--v4-transition-fast), background var(--v4-transition-fast);
+}
+
+.nav-audio-deck-toggle:hover {
+    transform: scale(1.05);
+    background: #fbfdff;
+}
+
+.nav-scroll-indicator {
+    position: absolute;
+    bottom: -1px;
+    left: 20px;
+    height: 2px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--v4-premium-blue), var(--v4-romantic-rose));
+    border-radius: 1px;
+    transition: width 0.1s linear;
+}
+
+/* ==========================================================================
+   PART 4: CINEMATIC HERO SECTION
+   ========================================================================== */
+.hero-arena {
+    padding: 180px 40px 100px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+    position: relative;
+}
+
+.hero-image-monument-container {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    height: 520px;
+    border-radius: 32px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    will-change: transform;
+}
+
+.luxury-image-frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    z-index: 5;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+}
+
+.hero-core-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    transform: scale(1.01);
+}
+
+.hero-editorial-wrapper {
+    flex-grow: 1;
+    max-width: 680px;
+}
+
+.hero-monumental-heading {
+    margin-bottom: 24px;
+}
+
+.hero-fade-line {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--v4-premium-blue);
+    margin-bottom: 12px;
+}
+
+.hero-script-line {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.2rem;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: var(--v4-text-primary);
+}
+
+.hero-poetic-epigraph {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: var(--v4-text-muted);
+    margin-bottom: 48px;
+}
+
+/* ==========================================================================
+   PART 5: RETROSPECTIVE COUNTDOWN & MASTER MUSIC PLAYER
+   ========================================================================== */
+.luxury-countdown-card {
+    padding: 32px;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+}
+
+.countdown-card-shine {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.countdown-card-title {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--v4-text-muted);
+    margin-bottom: 24px;
+}
+
+.countdown-flex-matrix {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.countdown-cell {
+    position: relative;
+    width: 22%;
+    text-align: center;
+}
+
+.countdown-cell:not(:last-child)::after {
+    content: ':';
+    position: absolute;
+    right: -15%;
+    top: 25%;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: rgba(29, 29, 31, 0.15);
+}
+
+.numeric-display-wrap {
+    background: rgba(255, 255, 255, 0.4);
+    padding: 12px 0;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 8px;
+}
+
+.numeric-digit {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--v4-text-primary);
+}
+
+.cell-tag {
+    font-size: 0.65rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--v4-text-muted);
+}
+
+.integrated-audio-deck {
+    display: flex;
+    align-items: center;
+    padding: 28px;
+    gap: 28px;
+}
+
+.deck-vinyl-wrapper {
+    position: relative;
+    width: 76px;
+    height: 76px;
+    flex-shrink: 0;
+}
+
+.deck-vinyl-grooves {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, #2c2c2e 0%, #1c1c1e 40%, #000000 70%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    will-change: transform;
+}
+
+.deck-vinyl-label {
+    width: 28px;
+    height: 28px;
+    background: var(--v4-romantic-rose);
+    border-radius: 50%;
+    border: 3px solid #1c1c1e;
+}
+
+.deck-core-controls {
+    flex-grow: 1;
+}
+
+.deck-track-metadata {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 12px;
+}
+
+.deck-title-text {
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
+.deck-artist-text {
+    font-size: 0.75rem;
+    color: var(--v4-text-muted);
+}
+
+.deck-progress-wrapper {
+    margin-bottom: 16px;
+}
+
+.deck-progress-track {
+    width: 100%;
+    height: 3px;
+    background: rgba(29, 29, 31, 0.06);
+    border-radius: 1.5px;
+    overflow: hidden;
+}
+
+.deck-progress-fill {
+    width: 0%;
+    height: 100%;
+    background: var(--v4-premium-blue);
+    border-radius: 1.5px;
+}
+
+.deck-button-row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.deck-utility-btn {
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    color: var(--v4-text-muted);
+    cursor: pointer;
+    transition: color var(--v4-transition-fast);
+}
+
+.deck-utility-btn:hover {
+    color: var(--v4-text-primary);
+}
+
+.deck-master-play-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--v4-luxury-white);
+    border: 1px solid rgba(29, 29, 31, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    transition: transform var(--v4-transition-fast), background var(--v4-transition-fast);
+}
+
+.deck-master-play-btn:hover {
+    transform: scale(1.05);
+    background: #fbfdff;
+}
+
+/* ==========================================================================
+   PART 6: QUANTUM STATISTICS METRICS ARENA
+   ========================================================================== */
+.metrics-arena {
+    padding: 120px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.metrics-editorial-header, .gallery-editorial-header, .timeline-editorial-header, .map-editorial-header {
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.section-subtitle-v4 {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--v4-text-muted);
+    margin-bottom: 12px;
+}
+
+.script-heading-v4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    font-weight: 400;
+    color: var(--v4-text-primary);
+}
+
+.metrics-statistical-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+}
+
+.metric-luxury-card {
+    padding: 40px 32px;
+    text-align: center;
+    position: relative;
+    transition: transform var(--v4-transition-medium), box-shadow var(--v4-transition-medium);
+}
+
+.metric-luxury-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(31, 38, 135, 0.06);
+}
+
+.metric-icon-glow {
+    display: block;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 4px 12px rgba(162, 210, 255, 0.3));
+}
+
+.metric-counter {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem;
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, var(--v4-text-primary) 30%, var(--v4-text-muted) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.metric-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--v4-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   PART 7: INTERACTIVE COUTURE FEATURES GRID
+   ========================================================================== */
+.features-arena {
+    padding: 0 40px 120px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.luxury-features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px;
+}
+
+.luxury-feature-card {
+    padding: 56px 48px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.card-crystal-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.card-icon-container {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.v4-envelope-icon {
+    width: 28px;
+    height: 20px;
+    border: 2px solid var(--v4-text-primary);
+    border-radius: 4px;
+    position: relative;
+}
+
+.v4-envelope-icon::before {
+    content: '';
+    position: absolute;
+    top: 2px; left: 4px; width: 16px; height: 10px;
+    border-bottom: 2px solid var(--v4-text-primary);
+    border-right: 2px solid var(--v4-text-primary);
+    transform: rotate(35deg);
+}
+
+.card-title-v4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 14px;
+}
+
+.card-description-v4 {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--v4-text-muted);
+    margin-bottom: 36px;
+    max-width: 400px;
+}
+
+.luxury-action-btn {
+    background: var(--v4-luxury-white);
+    border: 1px solid rgba(29, 29, 31, 0.08);
+    padding: 14px 28px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-radius: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    transition: transform var(--v4-transition-fast), background var(--v4-transition-fast), box-shadow var(--v4-transition-fast);
+}
+
+.luxury-action-btn:hover {
+    transform: translateY(-2px);
+    background: #fbfdff;
+    box-shadow: 0 8px 25px rgba(189, 224, 254, 0.2);
+}
+
+/* Special Chamber Mechanics Display Matrix */
+.special-glow-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 175, 204, 0.06) 100%);
+    border-color: rgba(255, 175, 204, 0.3);
+}
+
+.interactive-gift-box-anchor {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    margin-bottom: 26px;
+    cursor: pointer;
+}
+
+.v4-gift-box-lid {
+    width: 44px;
+    height: 10px;
+    background: var(--v4-romantic-rose);
+    border-radius: 2px;
+    position: absolute;
+    top: 6px; left: 3px;
+    z-index: 3;
+    transition: transform 0.4s var(--v4-ease-premium);
+}
+
+.v4-gift-box-base {
+    width: 38px;
+    height: 28px;
+    background: rgba(255, 175, 204, 0.7);
+    border-radius: 0 0 4px 4px;
+    position: absolute;
+    bottom: 6px; left: 6px;
+    z-index: 1;
+}
+
+.v4-gift-glow-core {
+    position: absolute;
+    top: 14px; left: 14px; width: 22px; height: 22px;
+    background: radial-gradient(circle, #fff 0%, transparent 70%);
+    opacity: 0;
+    z-index: 2;
+    transition: transform 0.4s var(--v4-ease-premium), opacity 0.4s var(--v4-ease-premium);
+}
+
+.interactive-gift-box-anchor:hover .v4-gift-box-lid {
+    transform: translateY(-6px) rotate(-8deg);
+}
+
+.interactive-gift-box-anchor:hover .v4-gift-glow-core {
+    opacity: 1;
+    transform: scale(1.5);
+}
+
+/* ==========================================================================
+   PART 8: MASONRY GALLERY ARTIFACTS GRID
+   ========================================================================== */
+.gallery-arena {
+    padding: 120px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.masonry-grid-viewport {
+    columns: 3 320px;
+    column-gap: 32px;
+    width: 100%;
+}
+
+.masonry-item {
+    break-inside: avoid;
+    margin-bottom: 32px;
+    padding: 16px;
+    display: block;
+    cursor: pointer;
+    will-change: transform;
+    transition: transform var(--v4-transition-medium), border-color var(--v4-transition-medium), box-shadow var(--v4-transition-medium);
+}
+
+.masonry-item:hover {
+    transform: translateY(-6px) scale(1.01);
+    border-color: rgba(129, 164, 205, 0.4);
+    box-shadow: 0 40px 90px rgba(31, 38, 135, 0.07);
+}
+
+.masonry-image-frame {
+    width: 100%;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(29, 29, 31, 0.03);
+}
+
+.masonry-image-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.8s var(--v4-ease-premium), filter 0.6s var(--v4-ease-premium);
+}
+
+.masonry-item:hover .masonry-image-frame img {
+    transform: scale(1.05);
+}
+
+.masonry-hover-shimmer {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(180deg, transparent 40%, rgba(29, 29, 31, 0.4) 100%);
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity var(--v4-transition-medium);
+    z-index: 2;
+}
+
+.masonry-item:hover .masonry-hover-shimmer {
+    opacity: 1;
+}
+
+.view-artifact-tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--v4-luxury-white);
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transform: translateY(10px);
+    transition: transform var(--v4-transition-medium);
+}
+
+.masonry-item:hover .view-artifact-tag {
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   PART 9: CHRONOLOGICAL TIMELINE CHRONICLES
+   ========================================================================== */
+.timeline-stage {
+    padding: 120px 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.v4-timeline-structural-axis {
+    position: relative;
+    width: 100%;
+    padding: 40px 0;
+}
+
+.v4-timeline-spine {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(29, 29, 31, 0.06);
+    transform: translateX(-50%);
+}
+
+.v4-timeline-fill-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(180deg, var(--v4-premium-blue), var(--v4-romantic-rose));
+    will-change: height;
+}
+
+.v4-timeline-nodes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.v4-timeline-node {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.v4-timeline-node:nth-child(even) {
+    justify-content: flex-start;
+}
+
+.v4-node-indicator {
+    position: absolute;
+    left: 50%;
+    top: 36px;
+    width: 14px;
+    height: 14px;
+    background: var(--v4-luxury-white);
+    border: 3px solid rgba(29, 29, 31, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    transition: border-color var(--v4-transition-medium), background var(--v4-transition-medium), box-shadow var(--v4-transition-medium);
+}
+
+.v4-timeline-node.node-passed-fill .v4-node-indicator {
+    border-color: var(--v4-romantic-rose);
+    background: var(--v4-romantic-rose);
+    box-shadow: 0 0 15px var(--v4-romantic-rose);
+}
+
+.v4-node-card {
+    width: 44%;
+    padding: 40px;
+    text-align: left;
+}
+
+.v4-node-date {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--v4-premium-blue);
+    margin-bottom: 12px;
+}
+
+.v4-node-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 14px;
+    color: var(--v4-text-primary);
+}
+
+.v4-node-card p {
+    font-size: 0.88rem;
+    color: var(--v4-text-muted);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   PART 10: GEOGRAPHIC CARTOGRAPHY INTERACTIVE ENGINE
+   ========================================================================== */
+.map-arena {
+    padding: 120px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.luxury-map-wrapper {
+    width: 100%;
+    height: 550px;
+    position: relative;
+    padding: 24px;
+}
+
+.custom-cartography-canvas {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background: radial-gradient(circle at center, rgba(238, 247, 255, 0.5) 0%, rgba(201, 226, 250, 0.4) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.map-geographic-grid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(29, 29, 31, 0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(29, 29, 31, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+.map-coordinate-pin {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 10;
+}
+
+.pin-pulse-ring {
+    position: absolute;
+    top: -8px; left: -8px; width: 40px; height: 40px;
+    border: 2px solid var(--v4-premium-blue);
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.map-coordinate-pin:hover .pin-pulse-ring,
+.map-coordinate-pin.pin-active .pin-pulse-ring {
+    animation: pinPulseV4 2s infinite ease-out;
+}
+
+@keyframes pinPulseV4 {
+    0% { transform: scale(0.5); opacity: 0.8; }
+    100% { transform: scale(1.8); opacity: 0; }
+}
+
+.pin-core-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--v4-luxury-white);
+    border: 3px solid var(--v4-premium-blue);
+    border-radius: 50%;
+    position: absolute;
+    top: 6px; left: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background var(--v4-transition-fast), border-color var(--v4-transition-fast);
+}
+
+.map-coordinate-pin:hover .pin-core-dot,
+.map-coordinate-pin.pin-active .pin-core-dot {
+    background: var(--v4-romantic-rose);
+    border-color: var(--v4-romantic-rose);
+}
+
+.map-info-drawer {
+    position: absolute;
+    bottom: 48px;
+    left: 48px;
+    width: 340px;
+    padding: 28px;
+    z-index: 20;
+    pointer-events: auto;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: transform var(--v4-transition-medium), opacity var(--v4-transition-medium);
+}
+
+.map-info-drawer.drawer-visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.map-info-drawer h5 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--v4-text-primary);
+}
+
+.map-info-drawer p {
+    font-size: 0.82rem;
+    color: var(--v4-text-muted);
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   PART 11: EDITORIAL FOOTER ARRANGEMENT
+   ========================================================================== */
+.v4-luxury-footer {
+    padding: 100px 40px 60px;
+    text-align: center;
+    background: linear-gradient(180deg, transparent 0%, rgba(201, 226, 250, 0.2) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-crest-logo {
+    font-size: 1.8rem;
+    color: var(--v4-romantic-rose);
+    filter: drop-shadow(0 0 8px rgba(255, 175, 204, 0.3));
+}
+
+.footer-poetic-vow {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--v4-text-primary);
+    max-width: 500px;
+    line-height: 1.6;
+}
+
+.footer-copyright-statement {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--v4-text-muted);
+    margin-top: 20px;
+}
+
+/* ==========================================================================
+   PART 12: MODALS LIGHTBOX, SURPRISE GIFT CHAMBER & CORRESPONDENCE VAULT
+   ========================================================================== */
+.v4-fullscreen-lightbox {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(238, 247, 255, 0.85);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--v4-transition-medium), visibility var(--v4-transition-medium);
+}
+
+.v4-fullscreen-lightbox.lightbox-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.v4-lightbox-close-action, .v4-letters-close-action, .v4-gift-close-action {
+    position: absolute;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    font-weight: 200;
+    color: var(--v4-text-primary);
+    cursor: pointer;
+    transition: transform var(--v4-transition-fast);
+}
+
+.v4-lightbox-close-action { top: 40px; right: 40px; }
+.v4-lightbox-close-action:hover, .v4-letters-close-action:hover, .v4-gift-close-action:hover {
+    transform: scale(1.1) rotate(90deg);
+}
+
+.v4-lightbox-nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid var(--v4-glass-border);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--v4-text-primary);
+    cursor: pointer;
+    transition: background var(--v4-transition-fast), transform var(--v4-transition-fast);
+    z-index: 10;
+}
+
+.v4-lightbox-nav-arrow:hover {
+    background: var(--v4-luxury-white);
+    transform: translateY(-50%) scale(1.08);
+}
+
+.arrow-left-v4 { left: 40px; }
+.arrow-right-v4 { right: 40px; }
+
+.v4-lightbox-content-viewport {
+    max-width: 900px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.v4-lightbox-image-wrapper {
+    max-height: 70vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 24px;
+    box-shadow: 0 50px 100px rgba(31, 38, 135, 0.12);
+}
+
+.v4-lightbox-image-wrapper img {
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    transform: scale(0.95);
+    opacity: 0;
+    transition: transform 0.6s var(--v4-ease-premium), opacity 0.6s var(--v4-ease-premium);
+}
+
+.v4-fullscreen-lightbox.lightbox-active .v4-lightbox-image-wrapper img {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.v4-lightbox-caption-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--v4-text-primary);
+    text-align: center;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+/* Correspondence Vault Drawer */
+.v4-letters-drawer-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(29, 29, 31, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1500;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--v4-transition-medium), visibility var(--v4-transition-medium);
+}
+
+.v4-letters-drawer-overlay.drawer-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.v4-letters-drawer-panel {
+    position: absolute;
+    top: 0; right: 0; width: 550px; height: 100%;
+    border-radius: 40px 0 0 40px;
+    padding: 60px 48px;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.v4-letters-drawer-overlay.drawer-active .v4-letters-drawer-panel {
+    transform: translateX(0);
+}
+
+.v4-letters-close-action { top: 40px; left: 40px; font-size: 2rem; }
+
+.v4-drawer-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-top: 40px;
+    margin-bottom: 32px;
+}
+
+.v4-letters-tabs-row {
+    display: flex;
+    gap: 12px;
+    border-bottom: 1px solid rgba(29, 29, 31, 0.06);
+    padding-bottom: 16px;
+    margin-bottom: 32px;
+}
+
+.v4-letter-tab-btn {
+    background: none;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--v4-text-muted);
+    padding: 8px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: color var(--v4-transition-fast), background var(--v4-transition-fast);
+}
+
+.v4-letter-tab-btn:hover, .v4-letter-tab-btn.tab-active {
+    color: var(--v4-text-primary);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.v4-letters-content-box {
+    flex-grow: 1;
+    position: relative;
+    overflow-y: auto;
+}
+
+.v4-letter-text-pane {
+    position: absolute;
+    top: 0; left: 0; width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
+}
+
+.v4-letter-text-pane.pane-active {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.letter-date-tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--v4-premium-blue);
+    margin-bottom: 16px;
+}
+
+.v4-letter-text-pane p:not(.letter-date-tag) {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--v4-text-primary);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+/* Surprise Gift Modal Frame */
+.v4-gift-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(238, 247, 255, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 1600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--v4-transition-medium), visibility var(--v4-transition-medium);
+}
+
+.v4-gift-modal-overlay.modal-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.v4-gift-modal-card {
+    width: 90%;
+    max-width: 500px;
+    padding: 48px;
+    position: relative;
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.v4-gift-modal-overlay.modal-active .v4-gift-modal-card {
+    transform: scale(1) translateY(0);
+}
+
+.v4-gift-close-action { top: 24px; right: 24px; font-size: 1.8rem; }
+
+.v4-gift-chamber-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.v4-gift-text-scroller {
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 8px;
+    margin-bottom: 28px;
+}
+
+.v4-gift-text-scroller p {
+    font-size: 0.92rem;
+    color: var(--v4-text-muted);
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.v4-gift-text-scroller p.script-p-v4 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--v4-text-primary);
+}
+
+.v4-gift-signature-crest {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--v4-romantic-rose);
+}
+
+/* ==========================================================================
+   PART 13: UTILITY MOTOR INTERACTIVE NAVIGATION & MOUSE TRACKERS
+   ========================================================================== */
+.back-to-top-anchor {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 850;
+}
+
+.luxury-back-to-top {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--v4-glass-border);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--v4-text-primary);
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: transform var(--v4-transition-medium), 
+                opacity var(--v4-transition-medium), 
+                background var(--v4-transition-fast),
+                visibility var(--v4-transition-medium);
+}
+
+.luxury-back-to-top.btn-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.luxury-back-to-top:hover {
+    background: var(--v4-luxury-white);
+    box-shadow: 0 15px 35px rgba(129, 164, 205, 0.25);
+}
+
+.arrow-up-glyph {
+    font-size: 1.1rem;
+    transition: transform var(--v4-transition-fast);
+}
+
+.luxury-back-to-top:hover .arrow-up-glyph {
+    transform: translateY(-2px);
+}
+
+/* Awwwards Precision Desktop Custom Cursor */
+.cursor-dot-v4, .cursor-ring-v4 {
+    position: fixed;
+    top: 0; left: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    will-change: transform;
+    transform: translate3d(-100px, -100px, 0);
+}
+
+.cursor-dot-v4 {
+    width: 6px;
+    height: 6px;
+    background: var(--v4-text-primary);
+}
+
+.cursor-ring-v4 {
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(29, 29, 31, 0.15);
+    transition: width 0.3s var(--v4-ease-premium), height 0.3s var(--v4-ease-premium), background-color 0.3s var(--v4-ease-premium), border-color 0.3s var(--v4-ease-premium);
+}
+
+.cursor-ring-v4.cursor-hover-active {
+    width: 56px;
+    height: 56px;
+    background-color: rgba(189, 224, 254, 0.15);
+    border-color: var(--v4-premium-blue);
+}
+
+/* Scroll Engine Animations Trigger Rules */
+.scroll-reveal-v4 {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+}
+
+.scroll-reveal-v4.reveal-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   PART 14: MULTI-DEVICE RESPONSIVE METRIC ADAPTATIONS
+   ========================================================================== */
+@media (max-width: 1200px) {
+    .hero-arena { gap: 40px; }
+    .hero-script-line { font-size: 3.6rem; }
+    .metrics-statistical-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 992px) {
+    .hero-arena {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 140px;
+    }
+    .hero-image-monument-container { max-width: 380px; height: 460px; }
+    .hero-editorial-wrapper { max-width: 100%; }
+    .luxury-features-grid { grid-template-columns: 1fr; gap: 32px; }
+    .v4-timeline-spine, .v4-node-indicator { left: 32px; transform: none; }
+    .v4-timeline-spine { transform: translateX(0); }
+    .v4-timeline-node { justify-content: flex-end !important; }
+    .v4-node-card { width: calc(100% - 64px); }
+    .v4-letters-drawer-panel { width: 100%; border-radius: 0; }
+}
+
+@media (max-width: 768px) {
+    body { cursor: default; }
+    .cursor-dot-v4, .cursor-ring-v4 { display: none !important; }
+    .luxury-navbar { width: calc(100% - 32px); padding: 0 20px; }
+    .nav-directory-links { display: none; }
+    .masonry-grid-viewport { columns: 2 260px; }
+    .countdown-flex-matrix { flex-wrap: wrap; gap: 16px 0; }
+    .countdown-cell { width: 45%; }
+    .countdown-cell:not(:last-child)::after { display: none; }
+}
+
+@media (max-width: 576px) {
+    .hero-script-line { font-size: 2.6rem; }
+    .masonry-grid-viewport { columns: 1 100%; }
+    .metrics-statistical-grid { grid-template-columns: 1fr; }
+    .integrated-audio-deck { flex-direction: column; text-align: center; }
+    .deck-button-row { justify-content: center; }
+    .luxury-map-wrapper { height: 400px; }
+    .map-info-drawer { width: calc(100% - 48px); bottom: 24px; left: 24px; }
+}
+
+/* ==========================================================================
+   PART 15: UPGRADED DYNAMIC AMBIENT SYSTEM ANIMATIONS (VERSION 4.1)
+   ========================================================================== */
+@keyframes pulseHeartV41 {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 8px var(--v4-romantic-rose)); }
+}
+
+@keyframes spinV4 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 10-Tier Premium Visual Image Engine Drivers */
+.hero-image-monument-container {
+    animation: softBreathingGlowV41 5s infinite ease-in-out alternate;
+}
+
+/* Effect 1: Soft Breathing Glow Keyframes */
+@keyframes softBreathingGlowV41 {
+    0% {
+        box-shadow: 0 30px 70px rgba(255, 175, 204, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.6);
+        transform: translateY(0);
+    }
+    100% {
+        box-shadow: 0 40px 90px rgba(189, 224, 254, 0.35), 0 0 20px rgba(162, 210, 255, 0.2);
+        transform: translateY(-8px);
+    }
+}
+
+/* Effect 2: Aurora Glow Ambient Framework */
+.premium-aurora-glow {
+    position: absolute;
+    top: -15%; left: -15%; width: 130%; height: 130%;
+    background: radial-gradient(circle, rgba(255,175,204,0.3) 0%, rgba(189,224,254,0.25) 40%, transparent 70%);
+    filter: blur(40px);
+    z-index: -2;
+    pointer-events: none;
+    animation: auroraDanceV41 12s infinite alternate linear;
+    will-change: transform;
+}
+
+@keyframes auroraDanceV41 {
+    0% { transform: rotate(0deg) scale(1); }
+    100% { transform: rotate(360deg) scale(1.15); }
+}
+
+/* Effect 3: Cinematic Light Rays Layer */
+.cinematic-light-rays {
+    position: absolute;
+    top: -20%; left: -10%; width: 120%; height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%, rgba(255,255,255,0.1) 100%);
+    mask-image: repeating-linear-gradient(60deg, #000 0px, #000 20px, transparent 20px, transparent 40px);
+    -webkit-mask-image: repeating-linear-gradient(60deg, #000 0px, #000 20px, transparent 20px, transparent 40px);
+    opacity: 0.45;
+    z-index: 1;
+    pointer-events: none;
+    animation: lightRayShiftV41 8s infinite alternate ease-in-out;
+}
+
+@keyframes lightRayShiftV41 {
+    0% { opacity: 0.3; transform: translateX(-10px); }
+    100% { opacity: 0.6; transform: translateX(10px); }
+}
+
+/* Effect 4: Diamond Sparkle Structural Layout */
+.diamond-sparkle-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px);
+    background-size: 32px 32px;
+    opacity: 0.25;
+    z-index: 2;
+    pointer-events: none;
+    animation: diamondPulseV41 4s infinite alternate;
+}
+
+@keyframes diamondPulseV41 {
+    0% { opacity: 0.1; }
+    100% { opacity: 0.4; background-position: 10px 10px; }
+}
+
+/* Effect 5: Glass Reflection Shimmer Engine */
+.glass-reflection-shimmer {
+    position: absolute;
+    top: 0; left: -150%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transform: skewX(-25deg);
+    pointer-events: none;
+    z-index: 6;
+    animation: clearGlassShineV41 6s infinite ease-in-out;
+}
+
+@keyframes clearGlassShineV41 {
+    0% { left: -150%; }
+    30%, 100% { left: 150%; }
+}
+
+/* Effects 6, 7, 8, 9, 10 (Snow, Fireflies, Hearts, Parallax, Lighting) are handled directly via HTML5 High-Performance GPU Canvas Layer Render Context loops */
+.hero-fx-overlay {
+    position: absolute;
+    top: -20px; left: -20px;
+    width: calc(100% + 40px) !important;
+    height: calc(100% + 40px) !important;
+    z-index: 8;
+    pointer-events: none;
+}
+
+/* =========================
+   VIDEO SECTION
+========================= */
+/* ==========================================================================
+   VERTICAL PORTRAIT VIDEO SYSTEM (DYNAMIC BOX)
+   ========================================================================== */
+
+/* ဗီဒီယိုတစ်ခုချင်းစီရဲ့ အပြင်ဘက် Frame ကတ်ပြား */
+.video-luxury-container {
+    width: 85%;
+    max-width: 320px; /* ဖုန်း Screen ထက်မကျော်ဘဲ ချစ်စရာကောင်းအောင် သေးသေးလေးပဲ ထိန်းထားမယ် */
+    margin: 0 auto 35px auto; /* အောက်က ဗီဒီယိုအသစ်နဲ့ ကြားထဲမှာ ၃၅ ပစ်ဆယ် အကွာအဝေး လှလှလေး ခြားပေးတာ */
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.02);
+    box-sizing: border-box;
+}
+
+/* ဒေါင်လိုက် Portrait ပုံစံ ဗီဒီယိုအပြည့်ပေါ်စေမည့် လျှို့ဝှက်ချက် Wrapper */
+.video-responsive-wrapper {
+    position: relative;
+    width: 100%;
+    /* ဖုန်း Portrait ဗီဒီယိုအချိုး (9:16) အပြည့်ပေါ်ဖို့ padding ကို 140% ပြောင်းလိုက်တာ */
+    padding-bottom: 140%; 
+    height: 0;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #000;
+}
+
+/* ဗီဒီယိုကို ဘေးမပြတ်၊ အပေါ်အောက်မညှပ်ဘဲ Frame ထဲ အပြည့်ဖြန့်ခင်းတာ */
+.video-responsive-wrapper video,
+.video-responsive-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* cover သုံးလိုက်ရင် ပုံစံမပျက်ဘဲ ကတ်ပြားတစ်ခုလုံး ဗီဒီယိုရုပ်ထွက် အပြည့်ပေါ်လာပါလိမ့်မယ် */
+    object-fit: cover; 
+    border: none;
+}
+
+/* ==========================================================================
+   MOBILE SCREEN PERFECT FIX
+   ========================================================================== */
+@media (max-width: 480px) {
+    .video-luxury-container {
+        width: 80% !important; /* ဖုန်းပေါ်မှာ ပိုသေးသေးသွယ်သွယ်လေးနဲ့ လှအောင် ညှိတာ */
+        max-width: 280px !important; 
+        margin-bottom: 40px !important; /* ဖုန်းမှာ ဗီဒီယို တစ်ပုဒ်နဲ့တစ်ပုဒ် ကြားအကွာအဝေးကို ပိုတိုးပြီး ခြားပေးလိုက်တာ */
+        padding: 10px;
+    }
+}
+
+*, *::before, *::after {
+    box-sizing: border-box; /* padding ကြောင့် screen ကျယ်မသွားအောင် တားပေးတယ် */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #eef7ff;
+    color: var(--v4-text-primary);
+    overflow-x: hidden; /* ဘေးတိုက် scroll ဆွဲလို့မရအောင်၊ ဖုန်း screen ထဲ ကွက်တိဖြစ်အောင် ထိန်းပေးတယ် */
+    width: 100vw; /* Screen ရဲ့ အကျယ်အတိုင်းပဲ ယူမယ် */
+    min-height: 100vh;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden; /* ဘေးတိုက် လုံးဝ (လုံးဝ) ဆွဲလို့မရအောင် ပိတ်ပစ်တာ */
+    position: relative;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box; /* ဘယ် Element မှ Padding ကြောင့် ဖောင်းမထွက်လာစေရဘူး */
+}
+
+@media (max-width: 992px) {
+    /* ပင်မ Arena တစ်ခုလုံးကို အထက်အောက် တည့်တည့်ပဲ စီမယ် */
+    .hero-arena {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        padding: 80px 16px 20px 16px !important; /* ဘေးဘယ်ညာ space ချန်မယ် */
+        box-sizing: border-box !important;
+        overflow-x: hidden !important;
+    }
+
+    /* ကောင်မလေးပုံကွင်းကြီးကို ဖုန်း screen အလယ်ပို့ပြီး size ညှိမယ် */
+    .hero-image-monument-container {
+        width: 100% !important;
+        max-width: 320px !important; /* ဖုန်း screen ထက် မကျော်စေရ */
+        height: 380px !important;
+        margin: 0 auto 24px auto !important;
+    }
+
+    /* စာတွေ၊ Countdown ကတ်တွေပါတဲ့ အခြမ်းကို အပြည့်ဆွဲဆန့်မယ် */
+    .hero-editorial-wrapper {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        text-align: center !important;
+    }
+
+    /* Countdown ကတ်ပြားကိုလည်း screen အပြည့် ကွက်တိချမယ် */
+    .luxury-countdown-card, .integrated-audio-deck {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}

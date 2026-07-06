@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Symphony of Us — Retrospective V4.1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="cursor-dot-v4" id="v4-cursor-dot"></div>
+    <div class="cursor-ring-v4" id="v4-cursor-ring"></div>
+
+    <canvas id="physics-particle-canvas" class="global-particle-canvas"></canvas>
+    <div class="luxury-aurora-borealis"></div>
+
+    <div class="preloader-overlay" id="preloader-overlay">
+        <div class="preloader-chamber">
+            <div class="preloader-crest-wrapper">
+                <span class="preloader-heart-glyph">♥</span>
+                <svg class="preloader-circular-track" viewBox="0 0 36 36">
+                    <path class="track-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <path class="track-fill" id="v4-circular-fill" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                </svg>
+            </div>
+            <h2 class="preloader-title">The Symphony of Us</h2>
+            <div class="preloader-progress-bar">
+                <div class="preloader-progress-fill" id="preloader-progress-fill"></div>
+            </div>
+            <p class="preloader-status-text" id="preloader-status-text">Harmonizing atmospheric matrix...</p>
+        </div>
+    </div>
+
+    <header class="luxury-navbar">
+        <div class="nav-branding-crest">
+            <span class="crest-glyph">∞</span>
+            <span class="crest-text-logotype">Symphony</span>
+        </div>
+        <nav class="nav-directory-links">
+            <a href="#hero" class="magnetic-target">Genesis</a>
+            <a href="#metrics" class="magnetic-target">Metrics</a>
+            <a href="#gallery" class="magnetic-target">Artifacts</a>
+            <a href="#timeline" class="magnetic-target">Chronicles</a>
+            <a href="#map" class="magnetic-target">Cartography</a>
+        </nav>
+        <button class="nav-audio-deck-toggle magnetic-target" id="v4-nav-audio-trigger" aria-label="Toggle Deck Audio">
+            <span class="play-glyph-v4">▶</span>
+        </button>
+        <div class="nav-scroll-indicator" id="v4-scroll-indicator"></div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-arena">
+            <div class="hero-image-monument-container" id="v4-hero-parallax-trigger">
+                <div class="premium-aurora-glow"></div>
+                <div class="cinematic-light-rays"></div>
+                <div class="diamond-sparkle-overlay"></div>
+                
+                <canvas id="hero-fx-canvas" class="hero-fx-overlay"></canvas>
+                
+                <div class="luxury-image-frame">
+                    <img src="img20.jpeg" alt="The Symphony Artwork" class="hero-core-img">
+                    <div class="glass-reflection-shimmer"></div>
+                </div>
+            </div>
+
+            <div class="hero-editorial-wrapper scroll-reveal-v4">
+                <div class="hero-monumental-heading">
+                    <span class="hero-fade-line">The Celebration of Love</span>
+                    <h1 class="hero-script-line">The Symphony of Us</h1>
+                </div>
+                <p class="hero-poetic-epigraph">
+                    "Two paths intertwined, navigating through the timeless space of stars, composing a melody written only for the heavens."
+                </p>
+
+                <div class="luxury-countdown-card glass-panel">
+                    <div class="countdown-card-shine"></div>
+                    <h3 class="countdown-card-title">Time Expended in Symphony</h3>
+                    <div class="countdown-flex-matrix">
+                        <div class="countdown-cell"><div class="numeric-display-wrap"><span class="numeric-digit" id="v4-days">00</span></div><span class="cell-tag">Days</span></div>
+                        <div class="countdown-cell"><div class="numeric-display-wrap"><span class="numeric-digit" id="v4-hours">00</span></div><span class="cell-tag">Hours</span></div>
+                        <div class="countdown-cell"><div class="numeric-display-wrap"><span class="numeric-digit" id="v4-minutes">00</span></div><span class="cell-tag">Minutes</span></div>
+                        <div class="countdown-cell"><div class="numeric-display-wrap"><span class="numeric-digit" id="v4-seconds">00</span></div><span class="cell-tag">Seconds</span></div>
+                    </div>
+                </div>
+
+                <div class="integrated-audio-deck glass-panel">
+                    <div class="deck-vinyl-wrapper">
+                        <div class="deck-vinyl-grooves" id="v4-vinyl-record">
+                            <div class="deck-vinyl-label"></div>
+                        </div>
+                    </div>
+                    <div class="deck-core-controls">
+                        <div class="deck-track-metadata">
+                            <span class="deck-title-text">Our Retrospective Theme</span>
+                            <span class="deck-artist-text">The Cinematic Symphony Orchestra</span>
+                        </div>
+                        <div class="deck-progress-wrapper">
+                            <div class="deck-progress-track">
+                                <div class="deck-progress-fill" id="v4-audio-progress-fill"></div>
+                            </div>
+                        </div>
+                        <div class="deck-button-row">
+                            <button class="deck-utility-btn">⏮</button>
+                            <button class="deck-master-play-btn" id="v4-deck-play-trigger"><span class="play-glyph-v4">▶</span></button>
+                            <button class="deck-utility-btn">⏭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="metrics" class="metrics-arena scroll-reveal-v4">
+            <div class="metrics-editorial-header">
+                <span class="section-subtitle-v4">Statistical Dimensions</span>
+                <h2 class="script-heading-v4">Our Quantum Metrics</h2>
+            </div>
+            <div class="metrics-statistical-grid">
+                <div class="metric-luxury-card glass-panel">
+                    <span class="metric-icon-glow">☕</span>
+                    <span class="metric-counter" data-target="0">၀</span>
+                    <span class="metric-label">Coffee Dates</span>
+                </div>
+                <div class="metric-luxury-card glass-panel">
+                    <span class="metric-icon-glow">✈</span>
+                    <span class="metric-counter" data-target="0">0</span>
+                    <span class="metric-label">Cities Explored</span>
+                </div>
+                <div class="metric-luxury-card glass-panel">
+                    <span class="metric-icon-glow">🎞</span>
+                    <span class="metric-counter" data-target="0">0</span>
+                    <span class="metric-label">Movies Watched</span>
+                </div>
+                <div class="metric-luxury-card glass-panel">
+                    <span class="metric-icon-glow">✨</span>
+                    <span class="metric-counter" data-target="0">0</span>
+                    <span class="metric-label">Shared Smiles</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-arena scroll-reveal-v4">
+    <div class="luxury-features-grid">
+
+        <div class="luxury-feature-card glass-panel">
+            <div class="card-crystal-overlay"></div>
+            <div class="card-icon-container">
+                <div class="v4-envelope-icon"></div>
+            </div>
+            <h3 class="card-title-v4">Correspondence Vault</h3>
+            <p class="card-description-v4">
+                Access the handwritten historical letter matrix written across the fragments of our timeline.
+            </p>
+            <button class="luxury-action-btn ignite-letters-drawer-trigger">
+                Open Archives
+            </button>
+        </div>
+
+        <div class="luxury-feature-card glass-panel special-glow-card">
+            <div class="card-crystal-overlay"></div>
+
+            <div class="interactive-gift-box-anchor" id="v4-gift-box-trigger">
+                <div class="v4-gift-box-lid"></div>
+                <div class="v4-gift-glow-core"></div>
+                <div class="v4-gift-box-base"></div>
+            </div>
+
+            <h3 class="card-title-v4">The Surprise Chamber</h3>
+            <p class="card-description-v4">
+                An interactive algorithmic dynamic gift module specifically reserved for your discovery.
+            </p>
+
+            <button class="luxury-action-btn action-btn-glow" id="v4-gift-box-btn-fallback">
+                Unlock Secret
+            </button>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =========================
+     GALLERY SECTION (FIXED)
+========================= -->
+
+<section id="gallery" class="gallery-arena scroll-reveal-v4">
+
+    <div class="gallery-editorial-header">
+        <span class="section-subtitle-v4">Visual Compilations</span>
+        <h2 class="script-heading-v4">The Retrospective Repository</h2>
+    </div>
+
+    <div class="masonry-grid-viewport">
+
+        <div class="masonry-item glass-panel" data-index="0">
+            <div class="masonry-image-frame">
+                <img src="img1.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+
+        <div class="masonry-item glass-panel" data-index="1">
+            <div class="masonry-image-frame">
+                <img src="img2.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+
+        <div class="masonry-item glass-panel" data-index="2">
+            <div class="masonry-image-frame">
+                <img src="img3.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+
+        <div class="masonry-item glass-panel" data-index="3">
+            <div class="masonry-image-frame">
+                <img src="img4.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+
+        <div class="masonry-item glass-panel" data-index="4">
+            <div class="masonry-image-frame">
+                <img src="img5.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+
+        <div class="masonry-item glass-panel" data-index="5">
+            <div class="masonry-image-frame">
+                <img src="img6.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+
+        <div class="masonry-item glass-panel" data-index="6">
+            <div class="masonry-image-frame">
+                <img src="img7.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+
+        <div class="masonry-item glass-panel" data-index="7">
+            <div class="masonry-image-frame">
+                <img src="img8.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+
+        <div class="masonry-item glass-panel" data-index="8">
+            <div class="masonry-image-frame">
+                <img src="img9.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+
+        <div class="masonry-item glass-panel" data-index="9">
+            <div class="masonry-image-frame">
+                <img src="img10.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+
+        <div class="masonry-item glass-panel" data-index="10">
+            <div class="masonry-image-frame">
+                <img src="img11.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+
+        <div class="masonry-item glass-panel" data-index="11">
+            <div class="masonry-image-frame">
+                <img src="img12.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+
+        <div class="masonry-item glass-panel" data-index="12">
+            <div class="masonry-image-frame">
+                <img src="img13.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+
+        <div class="masonry-item glass-panel" data-index="13">
+            <div class="masonry-image-frame">
+                <img src="img26.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+
+        <div class="masonry-item glass-panel" data-index="14">
+            <div class="masonry-image-frame">
+                <img src="img15.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+
+        <div class="masonry-item glass-panel" data-index="15">
+            <div class="masonry-image-frame">
+                <img src="img16.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+
+        <div class="masonry-item glass-panel" data-index="16">
+            <div class="masonry-image-frame">
+                <img src="img17.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+
+        <div class="masonry-item glass-panel" data-index="17">
+            <div class="masonry-image-frame">
+                <img src="img18.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+
+        <div class="masonry-item glass-panel" data-index="18">
+            <div class="masonry-image-frame">
+                <img src="img19.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+
+        <div class="masonry-item glass-panel" data-index="19">
+            <div class="masonry-image-frame">
+                <img src="img20.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+
+        <div class="masonry-item glass-panel" data-index="19">
+            <div class="masonry-image-frame">
+                <img src="img21.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+
+        <div class="masonry-item glass-panel" data-index="19">
+            <div class="masonry-image-frame">
+                <img src="img22.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+        <div class="masonry-item glass-panel" data-index="19">
+            <div class="masonry-image-frame">
+                <img src="img23.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+
+        <div class="masonry-item glass-panel" data-index="19">
+            <div class="masonry-image-frame">
+                <img src="img24.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+
+        <div class="masonry-item glass-panel" data-index="19">
+            <div class="masonry-image-frame">
+                <img src="img25.jpeg" class="lazy-load-image">
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================
+         PREMIUM VIDEO SECTION
+    ========================= -->
+
+    <section id="video-section">
+    <div class="video-editorial-header">
+        <span class="section-subtitle-v4">CINEMATIC MOMENTS</span>
+        <h2 class="script-heading-v4">Our Video Chronicles</h2>
+    </div>
+
+    <div class="video-luxury-container">
+        <div class="video-responsive-wrapper">
+            <video controls playsinline preload="metadata">
+                <source src="video1.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div class="video-luxury-container">
+        <div class="video-responsive-wrapper">
+            <video controls playsinline preload="metadata">
+                <source src="video2.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div class="video-luxury-container">
+        <div class="video-responsive-wrapper">
+            <video controls playsinline preload="metadata">
+                <source src="video3.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+</section>
+
+        <section id="timeline" class="timeline-stage scroll-reveal-v4">
+            <div class="timeline-editorial-header">
+                <span class="section-subtitle-v4">Historical Chronicles</span>
+                <h2 class="script-heading-v4">Our Shared Timeline</h2>
+            </div>
+            <div class="v4-timeline-structural-axis">
+                <div class="v4-timeline-spine">
+                    <div class="v4-timeline-fill-progress" id="v4-timeline-fill"></div>
+                </div>
+                <div class="v4-timeline-nodes-container">
+                    <div class="v4-timeline-node">
+                        <div class="v4-node-indicator"></div>
+                        <div class="v4-node-card glass-panel">
+                            <span class="v4-node-date">February 12, 2022</span>
+                            <h4>The Initial Collision</h4>
+                            <p>Our parameters crossed coordinates for the first time, establishing the foundational vectors of the architecture.</p>
+                        </div>
+                    </div>
+                    <div class="v4-timeline-node">
+                        <div class="v4-node-indicator"></div>
+                        <div class="v4-node-card glass-panel">
+                            <span class="v4-node-date">August 24, 2023</span>
+                            <h4>The First Transcontinental Flight</h4>
+                            <p>Crossing longitudes together, mapping architectural discoveries across foreign geographical matrices.</p>
+                        </div>
+                    </div>
+                    <div class="v4-timeline-node">
+                        <div class="v4-node-indicator"></div>
+                        <div class="v4-node-card glass-panel">
+                            <span class="v4-node-date">December 25, 2024</span>
+                            <h4>The Coalescence Matrix</h4>
+                            <p>Affirming mutual paths under cosmic seasonal arrays, fusing the architecture permanently.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="map" class="map-arena scroll-reveal-v4">
+            <div class="map-editorial-header">
+                <span class="section-subtitle-v4">Geographic Coordinates</span>
+                <h2 class="script-heading-v4">Locations of the Soul</h2>
+            </div>
+            <div class="luxury-map-wrapper glass-panel">
+                <div class="custom-cartography-canvas">
+                    <div class="map-geographic-grid"></div>
+                    
+                    <div class="map-coordinate-pin pin-active" style="top: 40%; left: 35%;" data-location="The Genesis Cafe" data-desc="The spatial coordinates where our dialogue loop originally initiated.">
+                        <div class="pin-pulse-ring"></div>
+                        <div class="pin-core-dot"></div>
+                    </div>
+
+                    <div class="map-coordinate-pin" style="top: 60%; left: 65%;" data-location="The Coastal Peak" data-desc="Where we witnessed the stellar horizon line align perfectly with our path.">
+                        <div class="pin-pulse-ring"></div>
+                        <div class="pin-core-dot"></div>
+                    </div>
+                </div>
+
+                <div class="map-info-drawer glass-panel drawer-visible" id="map-drawer-ui">
+                    <h5 id="drawer-location-title">The Genesis Cafe</h5>
+                    <p id="drawer-location-desc">The spatial coordinates where our dialogue loop originally initiated.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="v4-luxury-footer">
+        <div class="footer-crest-logo">∞</div>
+        <p class="footer-poetic-vow">"To traverse infinity, synchronized in time, rhythm, and code."</p>
+        <div class="footer-copyright-statement">Structured & Orchestrated © 2026. All Rights Reserved.</div>
+    </footer>
+
+    <div class="back-to-top-anchor">
+        <button class="luxury-back-to-top magnetic-target" id="v4-back-to-top-btn" aria-label="Scroll to Zenith">
+            <span class="arrow-up-glyph">↑</span>
+        </button>
+    </div>
+
+    <div class="v4-fullscreen-lightbox" id="global-v4-lightbox" aria-hidden="true" role="dialog">
+        <button class="v4-lightbox-close-action" id="v4-lightbox-close">×</button>
+        <button class="v4-lightbox-nav-arrow arrow-left-v4" id="v4-lightbox-prev">‹</button>
+        <div class="v4-lightbox-content-viewport">
+            <div class="v4-lightbox-image-wrapper">
+                <img src="img1.jpeg" alt="Active Vault Display" id="v4-lightbox-display-node">
+            </div>
+            <p class="v4-lightbox-caption-text" id="v4-lightbox-caption-node"></p>
+        </div>
+        <button class="v4-lightbox-nav-arrow arrow-right-v4" id="v4-lightbox-next">›</button>
+    </div>
+
+    <div class="v4-letters-drawer-overlay" id="global-v4-letters-drawer" aria-hidden="true">
+        <div class="v4-letters-drawer-panel glass-panel">
+            <button class="v4-letters-close-action" id="v4-letters-drawer-close">×</button>
+            <h3 class="v4-drawer-title">The Correspondence Vault</h3>
+            <div class="v4-letters-tabs-row">
+                <button class="v4-letter-tab-btn tab-active">Chapter I</button>
+                <button class="v4-letter-tab-btn">Chapter II</button>
+            </div>
+            <div class="v4-letters-content-box">
+                <div class="v4-letter-text-pane pane-active">
+                    <p class="letter-date-tag">Dawn of Genesis — 2022</p>
+                    <p>"From the moment our orbits intertwined, the static noise of the universe transformed into a perfect harmonic layout. Every day since has been an optimization of joy."</p>
+                </div>
+                <div class="v4-letter-text-pane">
+                    <p class="letter-date-tag">The Midnight Zenith — 2024</p>
+                    <p>"Across miles and longitudes, the frequency remained unbroken. Distance is but a minor metric when the core architecture is written in eternity."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="v4-gift-modal-overlay" id="global-v4-gift-modal" aria-hidden="true">
+        <div class="v4-gift-modal-card glass-panel">
+            <button class="v4-gift-close-action" id="v4-gift-modal-close">×</button>
+            <h3 class="v4-gift-chamber-title">The Secret Chamber</h3>
+            <div class="v4-gift-text-scroller">
+                <p class="script-p-v4">My Dearest,</p>
+                <p>You have unlocked the inner core of this application. This space is a dedicated monument to your radiance, your warmth, and the effortless brilliance you inject into my reality every single day.</p>
+                <p>Thank you for being my constant, my beautiful collaborator, and the finest melody in this lifelong symphony.</p>
+            </div>
+            <div class="v4-gift-signature-crest">♥</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
